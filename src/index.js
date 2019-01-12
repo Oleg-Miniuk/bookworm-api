@@ -2,10 +2,15 @@ import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 import auth from './routes/auth';
 
+// config
+dotenv.config();
+
+//  DB
 mongoose.connect(
-  'mongodb://localhost/bookworn',
+  process.env.MONGODB_URL,
   { useNewUrlParser: true }
 );
 

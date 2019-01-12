@@ -12,9 +12,7 @@ router.post('/', (req, res) => {
   }).then(user => {
     if (user && user.isValidPassword(password)) {
       res.json({
-        user: {
-          email
-        }
+        user: user.toAuthJSON()
       });
     } else {
       res.status(400).json({
