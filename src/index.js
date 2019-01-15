@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import auth from './routes/auth';
+import users from './routes/users';
 
 // config
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 
 // routes
 app.use('/api/auth', auth);
+app.use('/api/users', users);
 
 // static
 app.get('/*', (req, res) => {
