@@ -23,6 +23,10 @@ const schema = new mongoose.Schema(
     confirmationToken: {
       type: String,
       default: ''
+    },
+    resetPasswordToken: {
+      type: String,
+      default: ''
     }
   },
   {
@@ -64,6 +68,27 @@ schema.methods.setPassword = function setPassowrd(password) {
     .createHash('sha1')
     .update(password)
     .digest('hex');
+};
+
+schema.methods.generateResetPasswordToken = function generateResetPasswordToken() {
+  this.resetPasswordToken = jwt.sign(
+    {
+      _id: this._id
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
+};
+
+schema.methods.generateResetPasswordLink = function generateResetPasswordLink() {
+  // hardcode for client's data for dev only
+  this.generateResetPasswordToken();
+  const {
+    env: { CLIENT_PORT, CLIENT_HOSTNAME, PROTOCOL }
+  } = process;
+  return `${PROTOCOL}://${CLIENT_HOSTNAME}:${CLIENT_PORT}/reset_password/${
+    this.resetPasswordToken
+  }`;
 };
 
 schema.plugin(uniqueValidator, {

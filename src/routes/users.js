@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
   const { email, password } = req.body.user;
   const user = new User({ email });
   user.setPassword(password);
-  // TODO: set confirm email
+  // TODO: set email confirmation
   // user.setConfirmationToken();
   user
     .save()

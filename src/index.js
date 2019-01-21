@@ -30,4 +30,4 @@ app.get('/*', (req, res) => {
 });
 
 // run
-app.listen(4041, console.log('server is on 4041'));
+app.listen(process.env.PORT, console.log('server is on 4041'));
