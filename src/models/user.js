@@ -18,7 +18,8 @@ const schema = new mongoose.Schema(
     },
     confirmed: {
       type: Boolean,
-      default: false
+      // for testing TODO add confirmation mechanism
+      default: true
     },
     confirmationToken: {
       type: String,

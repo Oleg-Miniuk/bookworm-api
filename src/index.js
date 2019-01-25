@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import auth from './routes/auth';
 import users from './routes/users';
+import books from './routes/books';
 
 // config
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 // routes
 app.use('/api/auth', auth);
 app.use('/api/users', users);
+app.use('/api/books', books);
 
 // static
 app.get('/*', (req, res) => {
